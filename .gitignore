@@ -27,3 +27,7 @@
 *.exe
 *.out
 *.app
+/Maybe/Maybe.sdf
+/Maybe/Maybe.sln
+/Maybe/*.sln
+/Maybe/*.sdf
