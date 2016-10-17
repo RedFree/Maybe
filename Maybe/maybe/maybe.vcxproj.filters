@@ -13,10 +13,24 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="entity">
+      <UniqueIdentifier>{cf33b14b-9b6c-4321-87a3-8eb7f5154c1e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\sys_def.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\obj\Mpoint.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\test\sys.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\obj\Mpoint.cpp">
+      <Filter>entity</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
