@@ -27,6 +27,6 @@
 *.exe
 *.out
 /Maybe/Maybe.sdf
-/Maybe/Maybe.sln
-/Maybe/*.sln
+#/Maybe/Maybe.sln
+#/Maybe/*.sln
 /Maybe/*.sdf
