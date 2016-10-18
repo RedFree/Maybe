@@ -22,63 +22,65 @@
 // SOFTWARE.
 //*********************************************************************************/
 
-#ifndef _ALLOCATOR_H
-#define _ALLOCATOR_H
-#pragma pack(push, _CRT_PACKING) //表示从此处开始结构体成员按照_CRT_PACKING所表示的字节数对齐
-#pragma warning(push, 3)         //表示从此处开始将警告级别提升为3
-#pragma warning(disable: 4244)   //表示不记录4244号警告 
+#ifndef _INSERTION_H
+#define _INSERTION_H
 
-// 由于下方使用了operator new函数，因此需要先取消new的宏定义  
-#pragma push_macro("new")  
-#undef new  
+#include "sys_def.h"
+#include "allocator.h"
 
-#pragma warning(disable: 4100)  
-
-#ifndef _FARQ   /* specify standard memory model */  
-#define _FARQ  
-#define _PDFT  ptrdiff_t  
-#define _SIZT  size_t  
-#endif /* _FARQ */  
-
-/// memory allocator
 namespace maybe
 {
+	using maybe::Allocator;
+
 	template<typename _Ty>
-	class Allocator
+	class Insertion
 	{
 	public:
-		Allocator();
-		~Allocator();
+		///The default constructor
+		Insertion(){}
+		///The constructor of copy
+		Insertion(const Insertion& _insert){
+			this->list_ = _insert.list_;
+		}
+		Insertion(const vector<_Ty> _list) : list_(_list){}
+		~Insertion(){}
 
-		/// alocate the memery
-		/// allocate memery of _Ty type, size is _size.
-		_Ty* allocate(size_t _size){
-			return static_cast<_Ty*>(::operator new(_size*sizeof(_Ty)));
-		}
-		
-		/// deallocate memery
-		void deallocate(_Ty* _t)
-		{
-			::operator delete (_t);
-		}
+		void ascend(vector<_Ty>& _sortVec);
+		void sort();
+	protected:
 	private:
-
+		vector<_Ty> list_;
 	};
 
 	template<typename _Ty>
-	Allocator<_Ty>::Allocator()
+	void Insertion<_Ty>::ascend(vector<_Ty>& _sortVec)
 	{
+		for (size_t i = 0; i < list_.size(); ++i)
+		{
+			size_t uRet = i;
+			for (size_t dx = uRet; dx > 0; --dx)
+			{
+				if (list_[dx] < list_[dx-1])
+				{
+					_Ty tp = list_[dx];
+					list_[dx] = list_[dx-1];
+					list_[dx-1] = tp;
+				}
+				else
+					break;
+			}
+		}
+
+		_sortVec = list_;
 	}
 
 	template<typename _Ty>
-	Allocator<_Ty>::~Allocator()
+	void Insertion<_Ty>::sort()
 	{
+
 	}
 
 }
 
-#pragma pop_macro("new")  
-#pragma warning(pop)  
-#pragma pack(pop)  
 
 #endif
