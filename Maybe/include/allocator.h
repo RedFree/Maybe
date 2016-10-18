@@ -1,8 +1,8 @@
 //*********************************************************************************/
 // MIT License
-// 
+//
 // Copyright (c) 2016 RedFree
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
@@ -22,37 +22,45 @@
 // SOFTWARE.
 //*********************************************************************************/
 
-#ifndef _SYS_DEF_H
-#define _SYS_DEF_H
+#ifndef _ALLOCATOR_H
+#define _ALLOCATOR_H
 
-#if !defined(__FILE__)
-#   define __FILE__ ""
-#endif
-#if !defined(__LINE__)
-#   define __LINE__ 0
-#endif 
-#if defined(_MSC_VER) && (_MSC_VER >= 1600)
-#   define __func__ __funcbe__
-#endif
-
-
-#ifdef _BOOST_DEBUG
-#include "boost/timer/timer.hpp"
-#endif
-
-#include <iostream>
-#include <vector>
-#include <string>
-#include <list>
-#include <map>
-#include <queue>
-#include <stack>
-
-using namespace std;
-
+/// memory allocator
 namespace maybe
 {
+	template<typename _Ty>
+	class Allocator
+	{
+	public:
+		Allocator();
+		~Allocator();
+
+		void* allocate(const _Ty& _t, size_t _size)
+		{
+			return ::operator new(_size*sizeof(_Ty));
+		}
+
+		void deallocate(_Ty* _t, size_t _size)
+		{
+			//for (size_t idx=0; idx<_size; ++idx)
+			{
+				::operator delete (_t);
+				//++_t;
+			}
+		}
+	private:
+
+	};
+
+	template<typename _Ty>
+	Allocator<_Ty>::Allocator()
+	{
+	}
+
+	template<typename _Ty>
+	Allocator<_Ty>::~Allocator()
+	{
+	}
 
 }
-
 #endif

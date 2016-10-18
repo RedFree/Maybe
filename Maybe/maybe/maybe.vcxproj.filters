@@ -16,6 +16,15 @@
     <Filter Include="entity">
       <UniqueIdentifier>{cf33b14b-9b6c-4321-87a3-8eb7f5154c1e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="algorithm">
+      <UniqueIdentifier>{40cdf17f-4e59-4f73-bb10-a1a9d0dac440}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{15524405-bc6b-45a9-8e21-564fbe0200b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="alloctor">
+      <UniqueIdentifier>{0af241af-7e66-4c05-bbf3-22fbd26327cd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\sys_def.h">
@@ -23,6 +32,12 @@
     </ClInclude>
     <ClInclude Include="..\include\obj\Mpoint.h">
       <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\easylogging++.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\allocator.h">
+      <Filter>alloctor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
