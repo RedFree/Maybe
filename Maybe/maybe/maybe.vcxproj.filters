@@ -39,7 +39,7 @@
     <ClInclude Include="..\include\sys_def.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\algorithm\insertion.h">
+    <ClInclude Include="..\include\algorithm\algoritm.h">
       <Filter>algorithm</Filter>
     </ClInclude>
   </ItemGroup>

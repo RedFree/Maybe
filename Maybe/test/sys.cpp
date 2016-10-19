@@ -1,6 +1,6 @@
 #include "obj/Mpoint.h"
 #include "include/allocator.h"
-#include "algorithm/insertion.h"
+#include "algorithm/algoritm.h"
 
 using namespace maybe;
 
@@ -20,7 +20,8 @@ int main(int argc, char** argv)
 	}
 	
 	Insertion<int> sert(ls);
-	sert.ascend(ls);
+	//sert.ascend(ls);
+	sert.ascend_sort(ls);
 
 	for (int i=0; i < ls.size(); ++i)
 	{

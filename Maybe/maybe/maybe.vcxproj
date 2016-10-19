@@ -66,7 +66,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\algorithm\insertion.h" />
+    <ClInclude Include="..\include\algorithm\algoritm.h" />
     <ClInclude Include="..\include\allocator.h" />
     <ClInclude Include="..\include\easylogging++.h" />
     <ClInclude Include="..\include\obj\Mpoint.h" />

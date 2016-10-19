@@ -22,8 +22,8 @@
 // SOFTWARE.
 //*********************************************************************************/
 
-#ifndef _INSERTION_H
-#define _INSERTION_H
+#ifndef _ALGORITHM_H
+#define _ALGORITHM_H
 
 #include "sys_def.h"
 #include "allocator.h"
@@ -31,7 +31,6 @@
 namespace maybe
 {
 	using maybe::Allocator;
-
 	template<typename _Ty>
 	class Insertion
 	{
@@ -46,7 +45,7 @@ namespace maybe
 		~Insertion(){}
 
 		void ascend(vector<_Ty>& _sortVec);
-		void sort();
+		void ascend_sort(vector<_Ty>& _sortVec);
 	protected:
 	private:
 		vector<_Ty> list_;
@@ -70,16 +69,26 @@ namespace maybe
 					break;
 			}
 		}
-
 		_sortVec = list_;
 	}
-
 	template<typename _Ty>
-	void Insertion<_Ty>::sort()
+	void Insertion<_Ty>::ascend_sort(vector<_Ty>& _sortVec)
 	{
-
+		vector<_Ty>::iterator _itor = ++_sortVec.begin();
+		while (_itor != _sortVec.end())
+		{
+			vector<_Ty>::iterator _secItor = _itor;
+			vector<_Ty>::iterator _thdItor;
+			while (_secItor !=_sortVec.begin() && 
+				  (*(_thdItor = _secItor) ) < *--_secItor )
+			{
+				_Ty _val = *_secItor;
+				*_secItor = *_thdItor;
+				*_thdItor = _val;
+			}
+			++_itor;
+		}
 	}
-
 }
 
 
