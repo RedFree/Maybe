@@ -14,7 +14,7 @@ int main(int argc, char** argv)
 	cout << "ptr = " << *ptr << endl;
 	alloc.deallocate(ptr);
 	vector<int> ls;
-	for (int i=0; i<100; i++)
+	for (size_t i=0; i<100; i++)
 	{
 		ls.push_back(100-i);
 	}
@@ -23,7 +23,7 @@ int main(int argc, char** argv)
 	//sert.ascend(ls);
 	sert.ascend_sort(ls);
 
-	for (int i=0; i < ls.size(); ++i)
+	for (size_t i=0; i < ls.size(); ++i)
 	{
 		cout << "i = " << i << " " << ls[i] << endl;
 	}
