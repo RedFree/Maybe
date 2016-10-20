@@ -47,6 +47,9 @@
 #include <map>
 #include <queue>
 #include <stack>
+#include <algorithm>
+#include <numeric>
+#include <functional>
 
 using namespace std;
 

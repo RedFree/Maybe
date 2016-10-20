@@ -46,10 +46,64 @@ namespace maybe
 
 		void ascend(vector<_Ty>& _sortVec);
 		void ascend_sort(vector<_Ty>& _sortVec);
+		//************************************
+		// Method:    insertion_sort
+		// FullName:  maybe::Insertion<_Ty>::insertion_sort
+		// Access:    public 
+		// Returns:   void
+		// Qualifier: standard insertion-sort
+		// Parameter: const vector<_Ty> & _sort_vec
+		//************************************
+		void insertion_sort( vector<_Ty>& _sort_vec);
+
+		//************************************
+		// Method:    bubble_sort
+		// FullName:  maybe::Insertion<_Ty>::bubble_sort
+		// Access:    public 
+		// Returns:   void
+		// Qualifier: standard bubble-sort
+		// Parameter: vector<_Ty> & _sort_vec
+		//************************************
+		void bubble_sort(vector<_Ty>& _sort_vec);
 	protected:
 	private:
 		vector<_Ty> list_;
 	};
+
+	template<typename _Ty>
+	void maybe::Insertion<_Ty>::bubble_sort( vector<_Ty>& _sort_vec )
+	{
+		for (size_t first = 0; first < _sort_vec.size(); ++first)
+		{
+			for (size_t scnd = _sort_vec.size() - 1; scnd > first; --scnd)
+			{
+				if (_sort_vec[scnd] < _sort_vec[scnd-1])
+				{
+					_Ty tmp = _sort_vec[scnd];
+					_sort_vec[scnd] = _sort_vec[scnd-1];
+					_sort_vec[scnd-1] = tmp;
+				}
+			}
+
+		}
+	}
+
+	template<typename _Ty>
+	void maybe::Insertion<_Ty>::insertion_sort( vector<_Ty>& _sort_vec )
+	{
+		for (size_t first = 1; first < _sort_vec.size(); ++first)
+		{
+			_Ty _key = _sort_vec[first];
+			int _prev = first - 1;
+			while (_prev >= 0 && _sort_vec[_prev] > _key)
+			{
+				_sort_vec[_prev+1] = _sort_vec[_prev];
+				--_prev;
+			}
+			_sort_vec[_prev+1] = _key;
+
+		}
+	}
 
 	template<typename _Ty>
 	void Insertion<_Ty>::ascend(vector<_Ty>& _sortVec)

@@ -1,8 +1,8 @@
 //*********************************************************************************/
 // MIT License
-//
+// 
 // Copyright (c) 2016 RedFree
-//
+// 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
@@ -22,64 +22,34 @@
 // SOFTWARE.
 //*********************************************************************************/
 
-#ifndef _ALLOCATOR_H
-#define _ALLOCATOR_H
-#pragma pack(push, _CRT_PACKING) //表示从此处开始结构体成员按照_CRT_PACKING所表示的字节数对齐
-#pragma warning(push, 3)         //表示从此处开始将警告级别提升为3
-#pragma warning(disable: 4244)   //表示不记录4244号警告 
+#ifndef _UTIL_H
+#define _UTIL_H
+#include "sys_def.h"
 
-// 由于下方使用了operator new函数，因此需要先取消new的宏定义  
-#pragma push_macro("new")  
-#undef new  
-
-#pragma warning(disable: 4100)  
-
-#ifndef _FARQ   /* specify standard memory model */  
-#define _FARQ  
-#define _PDFT  ptrdiff_t  
-#define _SIZT  size_t  
-#endif /* _FARQ */  
-
-/// memory allocator
-namespace maybe
+namespace util
 {
-	template<typename _Ty>
-	class Allocator
+	template <typename _Ty>
+	inline void INSERT_ELEMENTS(_Ty& coll, int first, int last)
 	{
-		typedef _Ty size_type;
-	public:
-		Allocator();
-		~Allocator();
-
-		/// alocate the memery
-		/// allocate memery of _Ty type, size is _size.
-		size_type* allocate(size_t _size){
-			return static_cast<size_type*>(::operator new(_size*sizeof(size_type)));
-		}
-		
-		/// deallocate memery
-		void deallocate(size_type* _t)
+		for (int i=first; i <= last; ++i)
 		{
-			::operator delete (_t);
+			coll.insert(coll.end(), i);
 		}
-	private:
-
-	};
-
-	template<typename _Ty>
-	Allocator<_Ty>::Allocator()
-	{
 	}
 
-	template<typename _Ty>
-	Allocator<_Ty>::~Allocator()
+	template <typename _Ty>
+	inline void PRINT_ELEMENTS(const _Ty& coll, const std::string& optcstr="")
 	{
-	}
+		std::cout << optcstr;
+		for (auto elem : coll)
+		{
+			std::cout << elem << ' ';
+		}
 
+		std::cout << std::endl;
+	}
 }
 
-#pragma pop_macro("new")  
-#pragma warning(pop)  
-#pragma pack(pop)  
+
 
 #endif
