@@ -51,13 +51,13 @@ namespace maybe
 		Allocator();
 		~Allocator();
 
-		/// alocate the memery
-		/// allocate memery of _Ty type, size is _size.
+		/// allocate the memory
+		/// allocate memory of _Ty type, size is _size.
 		size_type* allocate(size_t _size){
 			return static_cast<size_type*>(::operator new(_size*sizeof(size_type)));
 		}
 		
-		/// deallocate memery
+		/// deallocate memory
 		void deallocate(size_type* _t)
 		{
 			::operator delete (_t);

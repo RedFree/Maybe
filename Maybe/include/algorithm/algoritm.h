@@ -143,6 +143,115 @@ namespace maybe
 			++_itor;
 		}
 	}
+
+	/*
+	 *	合并两个已经排好序的数组
+	 *	_coll: 容器
+	 *	_first: left数组第一个元素索引
+	 *	_mid: 两个数组中间元素索引，属于left数组最后一个元素索引
+	 *	_last: right数组中最后一个元素索引，
+	 *	_size: _coll 数组长度
+	 */
+	template <typename _Ty>
+	void merge(_Ty& _coll, const size_t& _first, const size_t& _mid, const size_t& _last, const size_t& _size)
+	{
+		//此方法可以任意进行发挥，使用各种算法
+		///定义两个数组分别保存left和right数组元素，用于合并两个数组
+		_Ty left;
+		_Ty right;
+		
+ 		for (size_t idx=0; idx<=_mid-_first ; ++idx)
+		{
+			//	将_coll数组中左边已经排好序的数组复制到left
+			//	数组中
+			left.push_back(_coll[_first+idx]);
+		}
+
+ 		for (size_t idx=0; idx <= _last-_mid - 1; ++idx)
+		{
+			//	将__coll数组中右边已经排好序的数组复制到right
+			//	数组中
+  			right.push_back(_coll[_mid+idx+1]);
+		}
+
+		for (size_t i=0, j=0, k=_first; k<=_last; k++)  
+		{  
+			//	合并两个数组
+			if (i <= _mid)
+			{
+				//	如果第一个数组和第二个数组都没有合并完成
+				if (j < _last - _mid)
+				{
+					if (left[i]<=right[j] && i <= _mid)  
+					{  
+						_coll[k] = left[i];  
+						i++;  
+					}else{  
+						_coll[k] = right[j];  
+						j++;   
+					}  
+				}
+				else
+				{
+					//	right数组合并完成，
+					//	将left数组剩余元素复制到
+					//	_coll数组中
+					_coll[k] = left[i];  
+					i++; 
+				}
+				
+			}
+			else
+			{
+				//	如果left数组合并完成，
+				//	则将right数组复制到_coll数组中
+				if (j < _last - _mid)
+				{
+					_coll[k] = right[j];  
+					j++;   
+				}
+			}
+		}  
+	}
+
+	//  [10/28/2016 wd]
+	/*
+	 *	归并排序算法简单实现
+	 *  _Ty为STL容器
+	 *	_first: 数组第一个索引
+	 *	_last: 数组最后一个索引
+	 */
+	template<typename _Ty>
+	void merge_sort1(_Ty& _coll, const size_t& _first, const size_t& _last)
+	{
+		if (_first < _last)
+		{
+			/*如果数组中大于等于两个元素，则继续分*/
+			///此种分法必然导致left数组size大于等于right数组size
+			size_t _mid = (_first + _last)/2;
+			//	继续分left数组
+			merge_sort1(_coll, _first, _mid);  
+			//	继续分right数组
+			merge_sort1(_coll, _mid+1, _last);
+			//	对两个已经排好序的数组进行合并
+
+			size_t _size = _coll.size();
+			//_size暂时没有使用
+			merge(_coll, _first, _mid, _last, _size);  
+		}
+	}
+
+	//  [10/28/2016 wd]
+	/*
+	 *	明天必须实现
+	 *	今天就算了
+	 */
+	template<typename _Ty>
+	void quick_sort(_Ty& _coll, const size_t& _left, const size_t& _right)
+	{
+
+	}
+
 }
 
 

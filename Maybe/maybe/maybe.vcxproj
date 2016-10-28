@@ -71,6 +71,7 @@
     <ClInclude Include="..\include\easylogging++.h" />
     <ClInclude Include="..\include\obj\Mpoint.h" />
     <ClInclude Include="..\include\sys_def.h" />
+    <ClInclude Include="..\include\util.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\obj\Mpoint.cpp" />
