@@ -243,13 +243,64 @@ namespace maybe
 
 	//  [10/28/2016 wd]
 	/*
-	 *	明天必须实现
-	 *	今天就算了
+	 *	快速排序
+	 *	//  [11/3/2016 wd]
 	 */
 	template<typename _Ty>
-	void quick_sort(_Ty& _coll, const size_t& _left, const size_t& _right)
+	int partition(_Ty& _coll,  int _left, int _right)
 	{
+		auto tmp = _coll[_right];
+		int i = _left - 1;
+		/// 从_left 开始与元素_right进行比较
+		/// 将比_right小的元素从_left开始顺序排放
+		/// _right元素不动，这样排序完成后，i位置
+		/// 为最后一个比_right元素小的元素，
+		/// 然后将_right元素与i+1元素交换，
+		/// 此时i+1元素左边元素均比i+1元素小
+		/// 右边均比i+1元素大
+		for (int j = _left; j <= _right-1; ++j)
+		{
+			if (_coll[j] <= tmp)
+			{
+				i++;
+				auto tmpval = _coll[j];
+				_coll[j] = _coll[i];
+				_coll[i] = tmpval;
+			}
+		}
 
+		/// 将_right元素交换的i+1位置
+		auto xx = _coll[i+1];
+		_coll[i+1] = _coll[_right];
+		_coll[_right] = xx;
+
+		/// 返回i+1元素索引
+		return i+1;
+	}
+
+	/*
+	 *	//  [11/3/2016 wd]
+	 *	快速排序
+	 *	拆分数组
+	 *	
+	 */
+	template<typename _Ty>
+	void quick_sort(_Ty& _coll, const int& _left, const int& _right)
+	{
+		/// 如果左边元素索引大于等于右边元素索引
+		/// 停止拆分
+		if (_left <= _right)
+		{
+			///对数组进行排序
+			/// 最小索引为_left, 最大索引为_right
+			int q = partition(_coll, _left, _right);
+
+			/// 左边排序
+			quick_sort(_coll, _left, q-1);
+
+			///右边排序
+			quick_sort(_coll, q+1, _right);
+		}
 	}
 
 }

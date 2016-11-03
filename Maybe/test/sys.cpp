@@ -62,7 +62,8 @@ int main(int argc, char** argv)
 	//sert.bubble_sort(ls);
 	int first = 0;
 	int last = ls.size() - 1;
-	merge_sort1(ls, first, last);
+	//merge_sort1(ls, first, last);
+	quick_sort(ls, 0, ls.size()-1);
 	PRINT_ELEMENTS(ls);
 	/*for (size_t i=0; i < ls.size(); ++i)
 	{
