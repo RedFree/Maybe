@@ -27,9 +27,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\obj\Mpoint.h">
-      <Filter>entity</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\easylogging++.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -45,12 +42,30 @@
     <ClInclude Include="..\include\util.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\type_def.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="noncopy.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\obj\gepoint.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\obj\geline.h">
+      <Filter>entity</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\test\sys.cpp">
+    <ClCompile Include="noncopy.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\obj\Mpoint.cpp">
+    <ClCompile Include="..\src\obj\gepoint.cpp">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\t_line.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\obj\geline.cpp">
       <Filter>entity</Filter>
     </ClCompile>
   </ItemGroup>

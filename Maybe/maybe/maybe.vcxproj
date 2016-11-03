@@ -40,6 +40,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(SolutionDir);$(SolutionDir)\include;$(BOOST_ROOT);$(IncludePath)</IncludePath>
+    <SourcePath>$(SolutionDir)\src;$(SolutionDir)\test;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -69,13 +70,18 @@
     <ClInclude Include="..\include\algorithm\algoritm.h" />
     <ClInclude Include="..\include\allocator.h" />
     <ClInclude Include="..\include\easylogging++.h" />
-    <ClInclude Include="..\include\obj\Mpoint.h" />
+    <ClInclude Include="..\include\obj\geline.h" />
+    <ClInclude Include="..\include\obj\gepoint.h" />
     <ClInclude Include="..\include\sys_def.h" />
+    <ClInclude Include="..\include\type_def.h" />
     <ClInclude Include="..\include\util.h" />
+    <ClInclude Include="noncopy.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\obj\Mpoint.cpp" />
-    <ClCompile Include="..\test\sys.cpp" />
+    <ClCompile Include="..\src\obj\geline.cpp" />
+    <ClCompile Include="..\src\obj\gepoint.cpp" />
+    <ClCompile Include="..\test\t_line.cpp" />
+    <ClCompile Include="noncopy.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
