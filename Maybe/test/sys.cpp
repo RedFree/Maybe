@@ -1,7 +1,7 @@
-#include "obj/gepoint.h"
+#include "include/obj/gepoint.h"
 #include "include/allocator.h"
-#include "algorithm/algoritm.h"
-#include "util.h"
+#include "include/algorithm/algoritm.h"
+#include "include/util.h"
 
 
 using namespace maybe;

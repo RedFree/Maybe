@@ -25,8 +25,8 @@
 #ifndef _ALGORITHM_H
 #define _ALGORITHM_H
 
-#include "sys_def.h"
-#include "allocator.h"
+#include "../sys_def.h"
+#include "../allocator.h"
 
 namespace maybe
 {
@@ -128,11 +128,11 @@ namespace maybe
 	template<typename _Ty>
 	void Insertion<_Ty>::ascend_sort(vector<_Ty>& _sortVec)
 	{
-		vector<_Ty>::iterator _itor = ++_sortVec.begin();
+		typename vector<_Ty>::iterator _itor = ++_sortVec.begin();
 		while (_itor != _sortVec.end())
 		{
-			vector<_Ty>::iterator _secItor = _itor;
-			vector<_Ty>::iterator _thdItor;
+			typename vector<_Ty>::iterator _secItor = _itor;
+			typename vector<_Ty>::iterator _thdItor;
 			while (_secItor !=_sortVec.begin() && 
 				  (*(_thdItor = _secItor) ) < *--_secItor )
 			{
@@ -145,41 +145,41 @@ namespace maybe
 	}
 
 	/*
-	 *	合并两个已经排好序的数组
-	 *	_coll: 容器
-	 *	_first: left数组第一个元素索引
-	 *	_mid: 两个数组中间元素索引，属于left数组最后一个元素索引
-	 *	_last: right数组中最后一个元素索引，
-	 *	_size: _coll 数组长度
+	 *	锟较诧拷锟斤拷锟斤拷锟窖撅拷锟脚猴拷锟斤拷锟斤拷锟斤拷锟斤拷
+	 *	_coll: 锟斤拷锟斤拷
+	 *	_first: left锟斤拷锟斤拷锟斤拷一锟斤拷元锟斤拷锟斤拷锟斤拷
+	 *	_mid: 锟斤拷锟斤拷锟斤拷锟斤拷锟叫硷拷元锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷left锟斤拷锟斤拷锟斤拷锟斤拷一锟斤拷元锟斤拷锟斤拷锟斤拷
+	 *	_last: right锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷一锟斤拷元锟斤拷锟斤拷锟斤拷锟斤拷
+	 *	_size: _coll 锟斤拷锟介长锟斤拷
 	 */
 	template <typename _Ty>
 	void merge(_Ty& _coll, const size_t& _first, const size_t& _mid, const size_t& _last, const size_t& _size)
 	{
-		//此方法可以任意进行发挥，使用各种算法
-		///定义两个数组分别保存left和right数组元素，用于合并两个数组
+		//锟剿凤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟叫凤拷锟接ｏ拷使锟矫革拷锟斤拷锟姐法
+		///锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟街别保达拷left锟斤拷right锟斤拷锟斤拷元锟截ｏ拷锟斤拷锟节合诧拷锟斤拷锟斤拷锟斤拷锟斤拷
 		_Ty left;
 		_Ty right;
 		
  		for (size_t idx=0; idx<=_mid-_first ; ++idx)
 		{
-			//	将_coll数组中左边已经排好序的数组复制到left
-			//	数组中
+			//	锟斤拷_coll锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟窖撅拷锟脚猴拷锟斤拷锟斤拷锟斤拷锟介复锟狡碉拷left
+			//	锟斤拷锟斤拷锟斤拷
 			left.push_back(_coll[_first+idx]);
 		}
 
  		for (size_t idx=0; idx <= _last-_mid - 1; ++idx)
 		{
-			//	将__coll数组中右边已经排好序的数组复制到right
-			//	数组中
+			//	锟斤拷__coll锟斤拷锟斤拷锟斤拷锟揭憋拷锟窖撅拷锟脚猴拷锟斤拷锟斤拷锟斤拷锟介复锟狡碉拷right
+			//	锟斤拷锟斤拷锟斤拷
   			right.push_back(_coll[_mid+idx+1]);
 		}
 
 		for (size_t i=0, j=0, k=_first; k<=_last; k++)  
 		{  
-			//	合并两个数组
+			//	锟较诧拷锟斤拷锟斤拷锟斤拷锟斤拷
 			if (i <= _mid)
 			{
-				//	如果第一个数组和第二个数组都没有合并完成
+				//	锟斤拷锟斤拷锟斤拷一锟斤拷锟斤拷锟斤拷锟酵第讹拷锟斤拷锟斤拷锟介都没锟叫合诧拷锟斤拷锟斤拷
 				if (j < _last - _mid)
 				{
 					if (left[i]<=right[j] && i <= _mid)  
@@ -193,9 +193,9 @@ namespace maybe
 				}
 				else
 				{
-					//	right数组合并完成，
-					//	将left数组剩余元素复制到
-					//	_coll数组中
+					//	right锟斤拷锟斤拷锟较诧拷锟斤拷锟缴ｏ拷
+					//	锟斤拷left锟斤拷锟斤拷剩锟斤拷元锟截革拷锟狡碉拷
+					//	_coll锟斤拷锟斤拷锟斤拷
 					_coll[k] = left[i];  
 					i++; 
 				}
@@ -203,8 +203,8 @@ namespace maybe
 			}
 			else
 			{
-				//	如果left数组合并完成，
-				//	则将right数组复制到_coll数组中
+				//	锟斤拷锟斤拷left锟斤拷锟斤拷锟较诧拷锟斤拷锟缴ｏ拷
+				//	锟斤拷锟斤拷right锟斤拷锟介复锟狡碉拷_coll锟斤拷锟斤拷锟斤拷
 				if (j < _last - _mid)
 				{
 					_coll[k] = right[j];  
@@ -216,34 +216,34 @@ namespace maybe
 
 	//  [10/28/2016 wd]
 	/*
-	 *	归并排序算法简单实现
-	 *  _Ty为STL容器
-	 *	_first: 数组第一个索引
-	 *	_last: 数组最后一个索引
+	 *	锟介并锟斤拷锟斤拷锟姐法锟斤拷锟斤拷实锟斤拷
+	 *  _Ty为STL锟斤拷锟斤拷
+	 *	_first: 锟斤拷锟斤拷锟斤拷一锟斤拷锟斤拷锟斤拷
+	 *	_last: 锟斤拷锟斤拷锟斤拷锟斤拷一锟斤拷锟斤拷锟斤拷
 	 */
 	template<typename _Ty>
 	void merge_sort1(_Ty& _coll, const size_t& _first, const size_t& _last)
 	{
 		if (_first < _last)
 		{
-			/*如果数组中大于等于两个元素，则继续分*/
-			///此种分法必然导致left数组size大于等于right数组size
+			/*锟斤拷锟斤拷锟斤拷锟斤拷锟叫达拷锟节碉拷锟斤拷锟斤拷锟斤拷元锟截ｏ拷锟斤拷锟斤拷锟斤拷锟斤拷*/
+			///锟斤拷锟街分凤拷锟斤拷然锟斤拷锟斤拷left锟斤拷锟斤拷size锟斤拷锟节碉拷锟斤拷right锟斤拷锟斤拷size
 			size_t _mid = (_first + _last)/2;
-			//	继续分left数组
+			//	锟斤拷锟斤拷锟斤拷left锟斤拷锟斤拷
 			merge_sort1(_coll, _first, _mid);  
-			//	继续分right数组
+			//	锟斤拷锟斤拷锟斤拷right锟斤拷锟斤拷
 			merge_sort1(_coll, _mid+1, _last);
-			//	对两个已经排好序的数组进行合并
+			//	锟斤拷锟斤拷锟斤拷锟窖撅拷锟脚猴拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟叫合诧拷
 
 			size_t _size = _coll.size();
-			//_size暂时没有使用
+			//_size锟斤拷时没锟斤拷使锟斤拷
 			merge(_coll, _first, _mid, _last, _size);  
 		}
 	}
 
 	//  [10/28/2016 wd]
 	/*
-	 *	快速排序
+	 *	锟斤拷锟斤拷锟斤拷锟斤拷
 	 *	//  [11/3/2016 wd]
 	 */
 	template<typename _Ty>
@@ -251,13 +251,13 @@ namespace maybe
 	{
 		auto tmp = _coll[_right];
 		int i = _left - 1;
-		/// 从_left 开始与元素_right进行比较
-		/// 将比_right小的元素从_left开始顺序排放
-		/// _right元素不动，这样排序完成后，i位置
-		/// 为最后一个比_right元素小的元素，
-		/// 然后将_right元素与i+1元素交换，
-		/// 此时i+1元素左边元素均比i+1元素小
-		/// 右边均比i+1元素大
+		/// 锟斤拷_left 锟斤拷始锟斤拷元锟斤拷_right锟斤拷锟叫比斤拷
+		/// 锟斤拷锟斤拷_right小锟斤拷元锟截达拷_left锟斤拷始顺锟斤拷锟脚凤拷
+		/// _right元锟截诧拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟缴猴拷锟斤拷i位锟斤拷
+		/// 为锟斤拷锟斤拷一锟斤拷锟斤拷_right元锟斤拷小锟斤拷元锟截ｏ拷
+		/// 然锟斤拷锟斤拷_right元锟斤拷锟斤拷i+1元锟截斤拷锟斤拷锟斤拷
+		/// 锟斤拷时i+1元锟斤拷锟斤拷锟斤拷元锟截撅拷锟斤拷i+1元锟斤拷小
+		/// 锟揭边撅拷锟斤拷i+1元锟截达拷
 		for (int j = _left; j <= _right-1; ++j)
 		{
 			if (_coll[j] <= tmp)
@@ -269,36 +269,36 @@ namespace maybe
 			}
 		}
 
-		/// 将_right元素交换的i+1位置
+		/// 锟斤拷_right元锟截斤拷锟斤拷锟斤拷i+1位锟斤拷
 		auto xx = _coll[i+1];
 		_coll[i+1] = _coll[_right];
 		_coll[_right] = xx;
 
-		/// 返回i+1元素索引
+		/// 锟斤拷锟斤拷i+1元锟斤拷锟斤拷锟斤拷
 		return i+1;
 	}
 
 	/*
 	 *	//  [11/3/2016 wd]
-	 *	快速排序
-	 *	拆分数组
+	 *	锟斤拷锟斤拷锟斤拷锟斤拷
+	 *	锟斤拷锟斤拷锟斤拷锟斤拷
 	 *	
 	 */
 	template<typename _Ty>
 	void quick_sort(_Ty& _coll, const int& _left, const int& _right)
 	{
-		/// 如果左边元素索引大于等于右边元素索引
-		/// 停止拆分
+		/// 锟斤拷锟斤拷锟斤拷锟斤拷元锟斤拷锟斤拷锟斤拷锟斤拷锟节碉拷锟斤拷锟揭憋拷元锟斤拷锟斤拷锟斤拷
+		/// 停止锟斤拷锟斤拷
 		if (_left <= _right)
 		{
-			///对数组进行排序
-			/// 最小索引为_left, 最大索引为_right
+			///锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
+			/// 锟斤拷小锟斤拷锟斤拷为_left, 锟斤拷锟斤拷锟斤拷锟斤拷为_right
 			int q = partition(_coll, _left, _right);
 
-			/// 左边排序
+			/// 锟斤拷锟斤拷锟斤拷锟斤拷
 			quick_sort(_coll, _left, q-1);
 
-			///右边排序
+			///锟揭憋拷锟斤拷锟斤拷
 			quick_sort(_coll, q+1, _right);
 		}
 	}

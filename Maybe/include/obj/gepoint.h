@@ -1,13 +1,13 @@
 #ifndef _MPOINT_H
 #define _MPOINT_H
 
-#include "sys_def.h"
-#include "type_def.h"
+#include "../sys_def.h"
+#include "../type_def.h"
 
 namespace maybe
 {
 	using namespace gem;
-	/// 平面几何中的点
+	/// 平锟芥几锟斤拷锟叫的碉拷
 	class gepoint
 	{
 	public:
@@ -16,7 +16,7 @@ namespace maybe
 			x_(_x), y_(_y){}
 
 		/*
-		 *	拷贝构造函数
+		 *	锟斤拷锟斤拷锟斤拷锟届函锟斤拷
 		 */
 		gepoint(const gepoint& _point){
 			x_ = _point.get_x();
@@ -24,7 +24,7 @@ namespace maybe
 		}
 
 		/*
-		 *	重载=， 用于赋值
+		 *	锟斤拷锟斤拷=锟斤拷 锟斤拷锟节革拷值
 		 */
 		gepoint& operator=(const gepoint& _point){
 			x_ = _point.get_x();
@@ -33,7 +33,7 @@ namespace maybe
 		}
 
 		/*
-		 *	用于大于比较
+		 *	锟斤拷锟节达拷锟节比斤拷
 		 */
 		ge_bool operator>(const gepoint& _point){
 			if (x_ > _point.get_x() && y_ > _point.get_y())
@@ -43,7 +43,7 @@ namespace maybe
 		}
 
 		/*
-		 *	用于小于比较
+		 *	锟斤拷锟斤拷小锟节比斤拷
 		 */
 		ge_bool operator<(const gepoint& _point){
 			if (x_ < _point.get_x() && y_ < _point.get_y())
@@ -53,7 +53,7 @@ namespace maybe
 		}
 
 		/*
-		 *	用于等于比较
+		 *	锟斤拷锟节碉拷锟节比斤拷
 		 */
 		ge_bool operator==(const gepoint& _point){
 			if (x_ == _point.get_x() && y_ == _point.get_y())
@@ -66,12 +66,12 @@ namespace maybe
 
 	public:
 		/*
-		 *	获取点的x坐标
+		 *	锟斤拷取锟斤拷锟斤拷x锟斤拷锟斤拷
 		 */
 		ge_real32 get_x()const{return x_;}
 
 		/*
-		 *	获取点的y轴坐标
+		 *	锟斤拷取锟斤拷锟斤拷y锟斤拷锟斤拷锟斤拷
 		 */
 		ge_real32 get_y()const {return y_;}
 	public:

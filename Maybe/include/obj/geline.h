@@ -24,22 +24,22 @@
 
 #ifndef _GELINE_H
 #define _GELINE_H
-#include "obj/gepoint.h"
+#include "include/obj/gepoint.h"
 
-/// 直线类
-/// 初始化两点确定一条直线
+/// 直锟斤拷锟斤拷
+/// 锟斤拷始锟斤拷锟斤拷锟斤拷确锟斤拷一锟斤拷直锟斤拷
 namespace maybe
 {
 	class geline
 	{
 	public:
 		/*
-		 *	默认构造函数
+		 *	默锟较癸拷锟届函锟斤拷
 		 */
 		geline() : vector_(0, 0){}
 
 		/*
-		 *	带参构造函数
+		 *	锟斤拷锟轿癸拷锟届函锟斤拷
 		 */
 		geline(const gepoint& _st, const gepoint& _ed) : 
 			start_(_st), end_(_ed)
@@ -55,14 +55,14 @@ namespace maybe
 		gepoint end_;
 
 		/*
-		 *	以下为直线点斜式参数
+		 *	锟斤拷锟斤拷为直锟竭碉拷斜式锟斤拷锟斤拷
 		 */
-		ge_real32 afcator;//斜率
-		ge_real32 bfactor;//截距
+		ge_real32 afcator;//斜锟斤拷
+		ge_real32 bfactor;//锟截撅拷
 
 	public:
 		/*
-		 *	直线向量
+		 *	直锟斤拷锟斤拷锟斤拷
 		 */
 		gepoint vector_;
 
