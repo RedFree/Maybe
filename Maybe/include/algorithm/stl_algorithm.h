@@ -27,7 +27,7 @@
 
 namespace stl_alg
 {
-    
+
 }
 
 
