@@ -144,42 +144,26 @@ namespace maybe
 		}
 	}
 
-	/*
-	 *	�ϲ������Ѿ��ź���������
-	 *	_coll: ����
-	 *	_first: left������һ��Ԫ������
-	 *	_mid: ���������м�Ԫ������������left��������һ��Ԫ������
-	 *	_last: right����������һ��Ԫ��������
-	 *	_size: _coll ���鳤��
-	 */
 	template <typename _Ty>
 	void merge(_Ty& _coll, const size_t& _first, const size_t& _mid, const size_t& _last, const size_t& _size)
 	{
-		//�˷��������������з��ӣ�ʹ�ø����㷨
-		///�������������ֱ𱣴�left��right����Ԫ�أ����ںϲ���������
 		_Ty left;
 		_Ty right;
 		
  		for (size_t idx=0; idx<=_mid-_first ; ++idx)
 		{
-			//	��_coll�����������Ѿ��ź��������鸴�Ƶ�left
-			//	������
 			left.push_back(_coll[_first+idx]);
 		}
 
  		for (size_t idx=0; idx <= _last-_mid - 1; ++idx)
 		{
-			//	��__coll�������ұ��Ѿ��ź��������鸴�Ƶ�right
-			//	������
   			right.push_back(_coll[_mid+idx+1]);
 		}
 
 		for (size_t i=0, j=0, k=_first; k<=_last; k++)  
 		{  
-			//	�ϲ���������
 			if (i <= _mid)
 			{
-				//	������һ�������͵ڶ������鶼û�кϲ�����
 				if (j < _last - _mid)
 				{
 					if (left[i]<=right[j] && i <= _mid)  
@@ -193,9 +177,6 @@ namespace maybe
 				}
 				else
 				{
-					//	right�����ϲ����ɣ�
-					//	��left����ʣ��Ԫ�ظ��Ƶ�
-					//	_coll������
 					_coll[k] = left[i];  
 					i++; 
 				}
@@ -203,8 +184,6 @@ namespace maybe
 			}
 			else
 			{
-				//	����left�����ϲ����ɣ�
-				//	����right���鸴�Ƶ�_coll������
 				if (j < _last - _mid)
 				{
 					_coll[k] = right[j];  
@@ -215,35 +194,23 @@ namespace maybe
 	}
 
 	//  [10/28/2016 wd]
-	/*
-	 *	�鲢�����㷨����ʵ��
-	 *  _TyΪSTL����
-	 *	_first: ������һ������
-	 *	_last: ��������һ������
-	 */
 	template<typename _Ty>
 	void merge_sort1(_Ty& _coll, const size_t& _first, const size_t& _last)
 	{
 		if (_first < _last)
 		{
-			/*���������д��ڵ�������Ԫ�أ���������*/
-			///���ַַ���Ȼ����left����size���ڵ���right����size
 			size_t _mid = (_first + _last)/2;
-			//	������left����
+			
 			merge_sort1(_coll, _first, _mid);  
-			//	������right����
 			merge_sort1(_coll, _mid+1, _last);
-			//	�������Ѿ��ź������������кϲ�
 
 			size_t _size = _coll.size();
-			//_size��ʱû��ʹ��
 			merge(_coll, _first, _mid, _last, _size);  
 		}
 	}
 
 	//  [10/28/2016 wd]
 	/*
-	 *	��������
 	 *	//  [11/3/2016 wd]
 	 */
 	template<typename _Ty>
@@ -251,13 +218,7 @@ namespace maybe
 	{
 		auto tmp = _coll[_right];
 		int i = _left - 1;
-		/// ��_left ��ʼ��Ԫ��_right���бȽ�
-		/// ����_rightС��Ԫ�ش�_left��ʼ˳���ŷ�
-		/// _rightԪ�ز����������������ɺ���iλ��
-		/// Ϊ����һ����_rightԪ��С��Ԫ�أ�
-		/// Ȼ����_rightԪ����i+1Ԫ�ؽ�����
-		/// ��ʱi+1Ԫ������Ԫ�ؾ���i+1Ԫ��С
-		/// �ұ߾���i+1Ԫ�ش�
+		
 		for (int j = _left; j <= _right-1; ++j)
 		{
 			if (_coll[j] <= tmp)
@@ -269,36 +230,26 @@ namespace maybe
 			}
 		}
 
-		/// ��_rightԪ�ؽ�����i+1λ��
 		auto xx = _coll[i+1];
 		_coll[i+1] = _coll[_right];
 		_coll[_right] = xx;
 
-		/// ����i+1Ԫ������
 		return i+1;
 	}
 
 	/*
 	 *	//  [11/3/2016 wd]
-	 *	��������
-	 *	��������
 	 *	
 	 */
 	template<typename _Ty>
 	void quick_sort(_Ty& _coll, const int& _left, const int& _right)
 	{
-		/// ��������Ԫ���������ڵ����ұ�Ԫ������
-		/// ֹͣ����
 		if (_left <= _right)
 		{
-			///��������������
-			/// ��С����Ϊ_left, ��������Ϊ_right
 			int q = partition(_coll, _left, _right);
 
-			/// ��������
 			quick_sort(_coll, _left, q-1);
 
-			///�ұ�����
 			quick_sort(_coll, q+1, _right);
 		}
 	}

@@ -2,7 +2,9 @@
 #include "include/sys_def.h"
 //#include "sys_def.h"
 #include "include/util.h"
+#include "include/easylogging++.h"
 
+INITIALIZE_EASYLOGGINGPP
 typedef struct student
 {
 	int id;
@@ -36,6 +38,17 @@ void test_stl_sort()
 
 int main(int argc, char** argv)
 {
+	el::Configurations conf("../conf/mylog.conf");
+	el::Loggers::reconfigureAllLoggers(conf);
+
+	ofstream out("../conf/a.txt");
+	out << "test" ;
+
+	LOG(TRACE)   << "***** trace log  *****";
+	LOG(DEBUG)   << "***** debug log  *****";
+	LOG(ERROR)   << "***** error log  *****";
+	LOG(WARNING) << "***** warning log  *****";
+	LOG(INFO)    << "***** info log  *****";
 	test_stl_sort();
 	// maybe::gepoint point(1, 2);
 	// maybe::gepoint pt2(point);

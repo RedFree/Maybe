@@ -10,3 +10,5 @@
 
 3. quick_sort为快速排序算法实现。
 
+4. 使用easylogging作为log支持
+
