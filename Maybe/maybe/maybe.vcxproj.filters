@@ -25,6 +25,9 @@
     <Filter Include="alloctor">
       <UniqueIdentifier>{0af241af-7e66-4c05-bbf3-22fbd26327cd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="algorithm\STL">
+      <UniqueIdentifier>{5cc129c3-0e04-4f41-b134-28a0970880fa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\easylogging++.h">
@@ -54,6 +57,9 @@
     <ClInclude Include="..\include\obj\geline.h">
       <Filter>entity</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\STL\algorithm.h">
+      <Filter>algorithm\STL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="noncopy.cpp">
@@ -62,11 +68,11 @@
     <ClCompile Include="..\src\obj\gepoint.cpp">
       <Filter>entity</Filter>
     </ClCompile>
-    <ClCompile Include="..\test\t_line.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\obj\geline.cpp">
       <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

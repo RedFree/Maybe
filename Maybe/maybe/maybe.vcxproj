@@ -72,6 +72,7 @@
     <ClInclude Include="..\include\easylogging++.h" />
     <ClInclude Include="..\include\obj\geline.h" />
     <ClInclude Include="..\include\obj\gepoint.h" />
+    <ClInclude Include="..\include\STL\algorithm.h" />
     <ClInclude Include="..\include\sys_def.h" />
     <ClInclude Include="..\include\type_def.h" />
     <ClInclude Include="..\include\util.h" />
@@ -80,7 +81,7 @@
   <ItemGroup>
     <ClCompile Include="..\src\obj\geline.cpp" />
     <ClCompile Include="..\src\obj\gepoint.cpp" />
-    <ClCompile Include="..\test\t_line.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="noncopy.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
