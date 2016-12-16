@@ -12,3 +12,6 @@
 
 4. 使用easylogging作为log支持
 
+5. 增加STL算法库(algorithm)中各种算法工具的用法
+
+
