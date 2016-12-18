@@ -103,6 +103,17 @@ namespace mi_stl
 
 		}
 
+		void describe_func(const string& name, const string& param1, const string& param2, const string& operation, const string& _return)
+		{
+			list<string> param;
+			param.push_back(param1);
+			param.push_back(param2);
+			param.push_back(operation);
+			format_print(name, param, _return);
+			std::cout << "DATA SAMPLE:" << std::endl;
+			util::PRINT_ELEMENTS(*data_);
+		}
+
 		/*
 		*	Managing all the function that will be called
 		*/
@@ -116,6 +127,20 @@ namespace mi_stl
 				show_any_of();
 			else if (!func_name.compare("binary_search"))
 				show_binary_search();
+			else if (!func_name.compare("copy"))
+				show_copy();
+			else if (!func_name.compare("copy_backward"))
+				show_copy_backward();
+			else if (!func_name.compare("copy_if"))
+				show_copy_if();	
+			else if (!func_name.compare("copy_n"))
+				show_copy_n();
+			else if (!func_name.compare("count"))
+				show_count();
+			else if (!func_name.compare("count_if"))
+				show_count_if();
+			else if (!func_name.compare("equal"))
+				show_equal();
 
 		}
 
@@ -210,7 +235,7 @@ namespace mi_stl
 			param.push_back("iterator");
 			param.push_back("iterator");
 			param.push_back("operation");
-			format_print("any_of", param, "bool");
+			format_print("binary_search", param, "bool");
 			std::cout << "DATA SAMPLE:" << std::endl;
 			util::PRINT_ELEMENTS(*data_);
 			_T::iterator first = data_->begin();
@@ -230,6 +255,210 @@ namespace mi_stl
 			std::cout << "looking for a 6... ";
 			if (std::binary_search (first, last, 6, [](type_ele x_, type_ele y_)->bool{return (x_ < y_);}))
 				std::cout << "found!\n"; else std::cout << "not found.\n";
+		}
+
+		/*
+		*	@function: Copies the elements in the range [first,last) into the range beginning at result.
+		*			   The function returns an iterator to the end of the destination range 
+		*			   (which points to the element following the last element copied).
+		*	@return: The function returns an iterator to the end of the destination range 
+		*			 (which points to the element following the last element copied).
+		*	@Complexity: linear
+		*/
+		void show_copy()
+		{
+			if (size <= 0)
+				return;
+
+			list<string> param;
+			param.push_back("iterator");
+			param.push_back("iterator");
+			param.push_back("operation");
+			format_print("copy", param, "iterator");
+			std::cout << "DATA SAMPLE:" << std::endl;
+			util::PRINT_ELEMENTS(*data_);
+			_T::iterator first = data_->begin();
+			_T::iterator last = data_->end();
+
+			type_val out_data(size);
+
+			// This will return the end iterator of out_data.
+			copy(first, last, out_data.begin());
+
+			cout << "copy array is : " << endl;
+			util::PRINT_ELEMENTS(out_data);
+		}
+
+		/*
+		*	@function:	Copies the elements in the range [first,last) starting from 
+		*				the end into the range terminating at result.
+		*	@return:	The function returns an iterator to the first element in the destination range.
+		*	@complexity: linear
+		*/
+		void show_copy_backward()
+		{
+			describe_func("copy_backward", "start_iterator", "end_iterator", "out_array_end", "first_iterator_out");
+
+			type_val::iterator first = data_->begin();
+			type_val::iterator end   = data_->end();
+			
+			// output array, initialize array by size.
+			type_val out_data(size);
+			std::copy_backward ( first, end,  out_data.end());
+
+			std::cout << "out_data contains:";
+			for (type_val::iterator it=out_data.begin(); it!=out_data.end(); ++it)
+				std::cout << ' ' << *it;
+			std::cout << '\n';
+
+		}
+
+		/**
+		 * @function: Copies the elements in the range [first,last) for which 
+		 *			  pred returns true to the range beginning at result.	
+		 * @return:		
+		 * @complexity:	Linear 
+		 *
+		 */
+		void show_copy_if()
+		{
+			describe_func("copy_if", "start_iterator", "end_iterator", "out_array_begin", "end_iterator_out");
+			type_val::iterator first = data_->begin();
+			type_val::iterator end   = data_->end();
+
+			// output array, initialize array by size.
+			type_val out_data(size);
+			// copy only positive numbers:
+			type_val::iterator it = std::copy_if (first, end, out_data.begin(), [](_Ty i){return !(i<0);} );
+			out_data.resize(std::distance(out_data.begin(),it));  // shrink container to new size
+
+			std::cout << "out_data contains:";
+			for (_Ty& x: out_data) std::cout << ' ' << x;
+			std::cout << '\n';
+		}
+
+		/**
+		 * @function:Copies the first n elements from the range beginning at first into the range beginning at result.
+		 * @return:	The function returns an iterator to the end of the destination range 
+		 *		    (which points to one past the last element copied).	
+		 * @complexity:	Linear 
+		 *
+		 */
+		void show_copy_n()
+		{
+			describe_func("copy_n", "out_data_array", "n", "in_array_begin", "end_iterator_out");
+			type_val::iterator first = data_->begin();
+			type_val::iterator end   = data_->end();
+
+			// output array, initialize array by size.
+			type_val out_data(size);
+
+			//Copy the the first seven elements to out_data.
+			std::copy_n ( first, 7, out_data.begin() );
+
+			std::cout << "out_data contains:";
+			for (type_val::iterator it = out_data.begin(); it!=out_data.end(); ++it)
+				std::cout << ' ' << *it;
+
+			std::cout << '\n';
+
+		}
+
+		/**
+		 * @function:Returns the number of elements in the range [first,last) that compare equal to val.	
+		 * @return:		
+		 * @complexity:	Linear
+		 *
+		 */
+		void show_count()
+		{
+			describe_func("count", "indata_container_beg_iterator", "n", "indata_container_end_iterator", "key_num");
+			type_val::iterator first = data_->begin();
+			type_val::iterator end   = data_->end();
+
+			// output array, initialize array by size.
+			type_val out_data(size);
+
+			int mycount = std::count (first, end, 10);
+			std::cout << "10 appears " << mycount << " times.\n";
+		}
+
+		/**
+		 * @function:Returns the number of elements in the range [first,last) for which pred is true.	
+		 * @return:		
+		 * @complexity:	Linear 
+		 *
+		 */
+		void show_count_if()
+		{
+			describe_func("count_if", "indata_container_beg_iterator", "indata_container_end_iterator", "operation", "key_num");
+			type_val::iterator first = data_->begin();
+			type_val::iterator end   = data_->end();
+
+			// output array, initialize array by size.
+			//type_val out_data(size);
+
+			// count the number of Odd 
+			int mycount = count_if (first, end, [](_Ty i){return ((i%2)==1);});
+			std::cout << "out_data contains " << mycount  << " odd values.\n";
+
+		}
+
+		/**
+		 * @function: Compares the elements in the range [first1,last1) with those in the range beginning at first2, 
+		 *			  and returns true if all of the elements in both ranges match.	
+		 * @return:		
+		 * @complexity:	linear 
+		 *
+		 */
+		void show_equal()
+		{
+			describe_func("equal", "indata_container_beg_iterator", "indata_container_end_iterator", "out_data_container", "bool");
+			type_val::iterator first = data_->begin();
+			type_val::iterator end   = data_->end();
+
+			int myints[] = {20,40,60,80,100};               //   myints: 20 40 60 80 100
+			type_val myvector (first, end);     // myvector: 20 40 60 80 100
+
+			// using default comparison:
+			if ( std::equal (myvector.begin(), myvector.end(), first) )
+				std::cout << "The contents of both sequences are equal.\n";
+			else
+				std::cout << "The contents of both sequences differ.\n";
+
+			// make not equal
+			myvector[3]=81;                                 // myvector: 20 40 60 81 100
+
+			// using predicate comparison:
+			if ( std::equal (myvector.begin(), myvector.end(), first, [](_Ty i, _Ty j){return (i==j);}) )
+				std::cout << "The contents of both sequences are equal.\n";
+			else
+				std::cout << "The contents of both sequences differ.\n";
+
+		}
+
+		/**
+		 * @function:	
+		 * @return:		
+		 * @complexity:	 2*log2(N)+1
+		 *
+		 */
+		void show_equal_range()
+		{
+			int myints[] = {10,20,30,30,20,10,10,20};
+			std::vector<int> v(myints,myints+8);                         // 10 20 30 30 20 10 10 20
+			std::pair<std::vector<int>::iterator,std::vector<int>::iterator> bounds;
+
+			// using default comparison:
+			std::sort (v.begin(), v.end());                              // 10 10 10 20 20 20 30 30
+			bounds=std::equal_range (v.begin(), v.end(), 20);            //          ^        ^
+
+			// using "mygreater" as comp:
+			std::sort (v.begin(), v.end(), [](int i,int j) { return (i>j); });                   // 30 30 20 20 20 10 10 10
+			bounds=std::equal_range (v.begin(), v.end(), 20, [](int i,int j) { return (i>j); }); //       ^        ^
+
+			std::cout << "bounds at positions " << (bounds.first - v.begin());
+			std::cout << " and " << (bounds.second - v.begin()) << '\n';
 		}
 
 	private:

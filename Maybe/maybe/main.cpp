@@ -67,17 +67,98 @@ int main(int argc, char** argv)
 	ag2.function_show("", &_list, _list.size());*/
 
 	/*********************************4**************************************/
-	/*	name: adjacent_find
-	/*	function: Searches the range [first,last) for the first occurrence 
-	/*	of two consecutive elements that match, and returns an iterator to 
-	/*	the first of these two elements, or last if no such pair is found.
+	/*	name: any_of
+	/*	Returns true if pred returns true for any of the elements in the 
+	/*	range [first,last), and false otherwise. 
+	/*	
+	/************************************************************************/
+	//alg<vector<int>, int> ag;
+	//vector<int> _list(100);
+	//generate(_list.begin(), _list.end(), rand);
+	//_list.push_back(-1); // This is used to be found by any_of
+	//ag.function_show("any_of", &_list, _list.size());
+
+	/*********************************5**************************************/
+	/*	name: binary_search
+	/*	Returns true if any element in the range [first,last) is equivalent 
+	/*	to val, and false otherwise.
+	/*	
+	/************************************************************************/
+	//alg<vector<int>, int> ag;
+	//vector<int> _list(100);
+	//generate(_list.begin(), _list.end(), rand);
+	//_list.push_back(-1); // This is used to be found by any_of
+	//ag.function_show("binary_search", &_list, _list.size());
+
+	/*********************************5**************************************/
+	/*	name: copy
+	/*	Returns true if any element in the range [first,last) is equivalent 
+	/*	to val, and false otherwise.
+	/*	
+	/************************************************************************/
+	//alg<vector<int>, int> ag;
+	//vector<int> _list(100);
+	//generate(_list.begin(), _list.end(), rand);
+	//ag.function_show("copy", &_list, _list.size());
+
+	/*********************************6**************************************/
+	/*	name: copy_backward
+	/*	Copies the elements in the range [first,last) starting from the end 
+	/*	into the range terminating at result.
+	/*	
+	/************************************************************************/
+	//alg<vector<int>, int> ag;
+	//vector<int> _list(100);
+	//generate(_list.begin(), _list.end(), rand);
+	//ag.function_show("copy_backward", &_list, _list.size());
+
+	/*********************************7**************************************/
+	/*	name: copy_if
+	/*	Copies the elements in the range [first,last) starting from the end 
+	/*	into the range terminating at result.
+	/*	
+	/************************************************************************/
+	//alg<vector<int>, int> ag;
+	//vector<int> _list(100);
+	//generate(_list.begin(), _list.end(), rand);
+	//for_each(_list.begin(), _list.end(), [](int& x){if (x%2 == 0)x = -x;});
+	//ag.function_show("copy_if", &_list, _list.size());
+
+	/*********************************8**************************************/
+	/*	name: copy_if
+	/************************************************************************/
+	//alg<vector<int>, int> ag;
+	//vector<int> _list(100);
+	//generate(_list.begin(), _list.end(), rand);
+	//ag.function_show("copy_n", &_list, _list.size());
+
+	/*********************************9**************************************/
+	/*	name: count
+	/************************************************************************/
+	//alg<vector<int>, int> ag;
+	//vector<int> _list(100);
+	//generate(_list.begin(), _list.end(), rand);
+	//_list.push_back(10);
+	//_list.push_back(10);
+	//ag.function_show("count", &_list, _list.size());
+
+	/*********************************9**************************************/
+	/*	name: count_if
+	/************************************************************************/
+	//alg<vector<int>, int> ag;
+	//vector<int> _list(100);
+	//generate(_list.begin(), _list.end(), rand);
+	//_list.push_back(10);
+	//_list.push_back(10);
+	//ag.function_show("count_if", &_list, _list.size());
+
+	/*********************************9**************************************/
+	/*	name: equal
 	/************************************************************************/
 	alg<vector<int>, int> ag;
 	vector<int> _list(100);
 	generate(_list.begin(), _list.end(), rand);
-	_list.push_back(-1); // This is used to be found by any_of
-	ag.function_show("any_of", &_list, _list.size());
-
+	ag.function_show("equal", &_list, _list.size());
 
 	return 0;
 }
