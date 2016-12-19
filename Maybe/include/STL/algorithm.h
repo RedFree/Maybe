@@ -141,6 +141,15 @@ namespace mi_stl
 				show_count_if();
 			else if (!func_name.compare("equal"))
 				show_equal();
+			else if (!func_name.compare("equal_range"))
+				show_equal_range();
+			else if (!func_name.compare("find_end"))
+				show_find_end();
+			else if (!func_name.compare("find_first_of"))
+				show_find_first_of();
+			else if (!func_name.compare("find_if"))
+				show_find_if();
+
 
 		}
 
@@ -459,6 +468,79 @@ namespace mi_stl
 
 			std::cout << "bounds at positions " << (bounds.first - v.begin());
 			std::cout << " and " << (bounds.second - v.begin()) << '\n';
+		}
+
+		/**
+		 * @function:Searches the range [first1,last1) for the last occurrence of the sequence defined by [first2,last2), 
+		 *			 and returns an iterator to its first element, or last1 if no occurrences are found.	
+		 * @return:		
+		 * @complexity:	linear 
+		 *
+		 */
+		void show_find_end()
+		{
+			describe_func("find_end", "indata_container_beg_iterator", "indata_container_end_iterator", "iterator_beg_sub_sequence", "iterator_of_firstIterator");
+			type_val::iterator first = data_->begin();
+			type_val::iterator end   = data_->end();
+
+			int needle1[] = {1,2,3};
+
+			// using default comparison:
+			type_val::iterator it;
+			it = std::find_end (first, end, needle1, needle1+3);
+			if (it!=end)
+				std::cout << "needle1 last found at position " << (it-first) << '\n';
+			int needle2[] = {4,5,1};
+			// using predicate comparison:
+			it = std::find_end (first, end, needle2, needle2+3, myfunction);
+			if (it!= end)
+				std::cout << "needle2 last found at position " << (it-first) << '\n';
+		}
+
+		/**
+		 * @function: Returns an iterator to the first element in the range [first1,last1) that matches any of the elements 
+		 *			  in [first2,last2). If no such element is found, the function returns last1.	
+		 * @return:		
+		 * @complexity:	linear 
+		 *
+		 */
+		void show_find_first_of()
+		{
+			describe_func("find_first_of", "indata_container_beg_iterator", "indata_container_end_iterator", "iterator_beg_sub_sequence", "iterator_of_firstIterator");
+			type_val::iterator first = data_->begin();
+			type_val::iterator end   = data_->end();
+
+			//int needle[] = {1, 2, 3};
+			int needle[] = {97, 98, 99};
+			// using default comparison:
+			type_val::iterator it = find_first_of (first, end, needle, needle+3);
+
+			if (it != end)
+				std::cout << "The first match is: " << *it << '\n';
+
+			// using predicate comparison:
+			it = find_first_of (first, end,
+				needle, needle+3, myfunction);
+
+			if (it !=end)
+				std::cout << "The first match is: " << *it << '\n';
+		}
+
+		/**
+		 * @function:	
+		 * @return:		
+		 * @complexity:	
+		 *
+		 */
+		void show_find_if()
+		{
+			describe_func("find_if", "indata_container_beg_iterator", "indata_container_end_iterator", "iterator_beg_sub_sequence", "iterator_of_firstIterator");
+			type_val::iterator first = data_->begin();
+			type_val::iterator end   = data_->end();
+			
+
+			type_val::iterator it = std::find_if (first, end, [](_Ty i){return !(i%2);});
+			std::cout << "The first odd value is " << *it << '\n';
 		}
 
 	private:

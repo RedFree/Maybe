@@ -142,7 +142,7 @@ int main(int argc, char** argv)
 	//_list.push_back(10);
 	//ag.function_show("count", &_list, _list.size());
 
-	/*********************************9**************************************/
+	/*********************************10**************************************/
 	/*	name: count_if
 	/************************************************************************/
 	//alg<vector<int>, int> ag;
@@ -152,13 +152,45 @@ int main(int argc, char** argv)
 	//_list.push_back(10);
 	//ag.function_show("count_if", &_list, _list.size());
 
-	/*********************************9**************************************/
+	/*********************************11**************************************/
 	/*	name: equal
+	/************************************************************************/
+	//alg<vector<int>, int> ag;
+	//vector<int> _list(100);
+	//generate(_list.begin(), _list.end(), rand);
+	//ag.function_show("equal", &_list, _list.size());
+
+	/*********************************12**************************************/
+	/*	name: equal_range
+	/************************************************************************/
+	//alg<vector<int>, int> ag;
+	//vector<int> _list(100);
+	//generate(_list.begin(), _list.end(), rand);
+	//ag.function_show("equal_range", &_list, _list.size());
+
+	/*********************************12**************************************/
+	/*	name: find_end
+	/************************************************************************/
+	//alg<vector<int>, int> ag;
+	//vector<int> _list(100);
+	//for (size_t i=0; i < _list.size(); ++i)
+	//{
+	//	_list[i] = i;
+	//}
+	////generate(_list.begin(), _list.end(), rand);
+	//ag.function_show("find_end", &_list, _list.size());
+
+	/*********************************13**************************************/
+	/*	name: find_first_of
 	/************************************************************************/
 	alg<vector<int>, int> ag;
 	vector<int> _list(100);
-	generate(_list.begin(), _list.end(), rand);
-	ag.function_show("equal", &_list, _list.size());
+	for (size_t i=0; i < _list.size(); ++i)
+	{
+		_list[i] = i+1;
+	}
+	//generate(_list.begin(), _list.end(), rand);
+	ag.function_show("find_if", &_list, _list.size());
 
 	return 0;
 }
