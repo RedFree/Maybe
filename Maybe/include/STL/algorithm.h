@@ -17,6 +17,38 @@ namespace mi_stl
 		return (i==j);
 	}
 
+	/**
+	 * @function: Functors	
+	 * @return:		
+	 * @complexity:	
+	 *
+	 */
+	template <class _T>
+	struct myclass {           // function object type:
+		void operator() (_T i) {std::cout << ' ' << i;}
+	};
+
+	struct stdclass {           // function object type:
+		void operator() (int i) {std::cout << ' ' << i;}
+	}stdobject;
+
+	int RandomNumber () { return (std::rand()%100); }
+
+	// class generator:
+	struct c_unique {
+		int current;
+		c_unique() {current=0;}
+		int operator()() {return ++current;}
+	} UniqueNumber;
+
+	//template <typename _Ty>
+	//struct c_unique_ex{
+	//	_Ty current;
+	//	c_unique() {current=0;}
+	//	_Ty operator()() {return ++current;}
+	//};
+
+
 	template <typename _T>
 	void format_print(_T format_name, list<string> param, _T return_val)
 	{
@@ -149,7 +181,15 @@ namespace mi_stl
 				show_find_first_of();
 			else if (!func_name.compare("find_if"))
 				show_find_if();
-
+			else if (!func_name.compare("find_if_not"))
+				show_find_if_not();
+			else if (!func_name.compare("for_each"))
+				show_for_each();
+			else if (!func_name.compare("generate"))
+				show_generate();
+			else if (!func_name.compare("generate_n"))
+				show_generate_n();
+		
 
 		}
 
@@ -539,8 +579,127 @@ namespace mi_stl
 			type_val::iterator end   = data_->end();
 			
 
-			type_val::iterator it = std::find_if (first, end, [](_Ty i){return !(i%2);});
+			type_val::iterator it = std::find_if (first, end, [](_Ty i){return (i%2);});
 			std::cout << "The first odd value is " << *it << '\n';
+		}
+
+		/**
+		 * @function: Returns an iterator to the first element in the range [first,last) for which 
+		 *			  pred returns false. If no such element is found, the function returns last.
+		 * @return:	pred is false, then return
+		 * @complexity:	linear 
+		 *
+		 */
+		void show_find_if_not()
+		{
+			describe_func("find_if_not", "indata_container_beg_iterator", "indata_container_end_iterator", "iterator_beg_sub_sequence", "iterator_of_firstIterator");
+			type_val::iterator first = data_->begin();
+			type_val::iterator end   = data_->end();
+
+			// foo = {1,2,3,4,5};
+
+			type_val::iterator it =
+				std::find_if_not (first, end, [](_Ty i){return i%2;} );
+			std::cout << "The first even value is " << *it << '\n';
+		}
+
+		/**
+		 * @function:	
+		 * @return:		
+		 * @complexity:	
+		 * @Note: This will be helpful for understanding the Functors
+		 *
+		 */
+		void show_for_each()
+		{
+			describe_func("for_each", "indata_container_beg_iterator", "indata_container_end_iterator", "operator", "iterator_of_firstIterator");
+			type_val::iterator first = data_->begin();
+			type_val::iterator end   = data_->end();
+
+			std::cout << '\n';
+
+			std::cout << "myvector1 contains:";
+			for_each (first, end, [](_Ty i){std::cout << " " << i ;});
+			std::cout << '\n';
+			std::cout << '\n';
+			// or:
+			std::cout << "myvector template call contains:";
+			for_each (first, end, myclass<_Ty>());
+			std::cout << '\n';
+			std::cout << '\n';
+
+			//or
+			myclass<_Ty> tmpclass;
+			std::cout << "myvector template object call contains:";
+			for_each (first, end, tmpclass);
+			std::cout << '\n';
+
+			std::cout << '\n';
+			// or:
+			std::cout << "object class call contains:";
+			for_each (first, end, stdclass());
+			std::cout << '\n';
+
+			std::cout << '\n';
+			// or:
+			std::cout << "object call contains:";
+			stdclass cl;
+			for_each (first, end, cl);
+			std::cout << '\n';
+
+		}
+
+		/**
+		 * @function:	Assigns the value returned by successive calls to gen to the elements in the range [first,last).
+		 * @return:		
+		 * @complexity:	
+		 *
+		 */
+		void show_generate()
+		{
+			std::srand ( unsigned ( 1 ) );
+
+			//std::vector<int> myvector (8);
+
+			describe_func("generate", "indata_container_beg_iterator", "indata_container_end_iterator", "operator", "iterator_of_firstIterator");
+			type_val::iterator first = data_->begin();
+			type_val::iterator end   = data_->end();
+
+			std::generate (first, end, RandomNumber);
+
+			std::cout << "myvector contains:";
+			for (type_val::iterator it=first; it!=end; ++it)
+				std::cout << ' ' << *it;
+			std::cout << '\n';
+
+			// This is a general call
+			//std::generate (first, end, UniqueNumber);
+			c_unique ex;
+			std::generate (first, end, ex);
+
+			std::cout << "myvector contains:";
+			for (type_val::iterator it = first; it != end; ++it)
+				std::cout << ' ' << *it;
+			std::cout << '\n';
+		}
+
+		/**
+		 * @function:	
+		 * @return:		
+		 * @complexity:	
+		 *
+		 */
+		void show_generate_n()
+		{
+			int myarray[9];
+
+			std::generate_n (myarray, 9, UniqueNumber);
+
+			std::cout << "myarray contains:";
+			for (int i=0; i<9; ++i)
+				std::cout << ' ' << myarray[i];
+			std::cout << '\n';
+
 		}
 
 	private:

@@ -183,14 +183,57 @@ int main(int argc, char** argv)
 	/*********************************13**************************************/
 	/*	name: find_first_of
 	/************************************************************************/
+	//alg<vector<int>, int> ag;
+	//vector<int> _list(100);
+	//for (size_t i=0; i < _list.size(); ++i)
+	//{
+	//	_list[i] = i+1;
+	//}
+	//ag.function_show("find_if", &_list, _list.size());
+
+	/*********************************14**************************************/
+	/*	name: find_if_not
+	/************************************************************************/
+	//alg<vector<int>, int> ag;
+	//vector<int> _list(100);
+	//for (size_t i=0; i < _list.size(); ++i)
+	//{
+	//	_list[i] = i+1;
+	//}
+	//ag.function_show("find_if", &_list, _list.size());
+
+	/*********************************15**************************************/
+	/*	name: for_each
+	/************************************************************************/
+	//alg<vector<int>, int> ag;
+	//vector<int> _list(100);
+	//for (size_t i=0; i < _list.size(); ++i)
+	//{
+	//	_list[i] = i+1;
+	//}
+	//ag.function_show("for_each", &_list, _list.size());
+
+	/*********************************16**************************************/
+	/*	name: generate
+	/************************************************************************/
+	//alg<vector<int>, int> ag;
+	//vector<int> _list(100);
+	//for (size_t i=0; i < _list.size(); ++i)
+	//{
+	//	_list[i] = i+1;
+	//}
+	//ag.function_show("generate", &_list, _list.size());
+
+	/*********************************17**************************************/
+	/*	name: generate_n
+	/************************************************************************/
 	alg<vector<int>, int> ag;
 	vector<int> _list(100);
 	for (size_t i=0; i < _list.size(); ++i)
 	{
 		_list[i] = i+1;
 	}
-	//generate(_list.begin(), _list.end(), rand);
-	ag.function_show("find_if", &_list, _list.size());
+	ag.function_show("generate_n", &_list, _list.size());
 
 	return 0;
 }
