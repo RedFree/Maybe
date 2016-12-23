@@ -227,13 +227,29 @@ int main(int argc, char** argv)
 	/*********************************17**************************************/
 	/*	name: generate_n
 	/************************************************************************/
+	//alg<vector<int>, int> ag;
+	//vector<int> _list(100);
+	//for (size_t i=0; i < _list.size(); ++i)
+	//	_list[i] = i+1;
+	//ag.function_show("generate_n", &_list, _list.size());
+
+	/*********************************18**************************************/
+	/*	name: includes
+	/************************************************************************/
+	//alg<vector<int>, int> ag;
+	//vector<int> _list(100);
+	//for (size_t i=0; i < _list.size(); ++i)
+	//	_list[i] = 100 - i;
+	//ag.function_show("includes", &_list, _list.size());
+
+	/*********************************19**************************************/
+	/*	name: inplace_merge
+	/************************************************************************/
 	alg<vector<int>, int> ag;
 	vector<int> _list(100);
 	for (size_t i=0; i < _list.size(); ++i)
-	{
-		_list[i] = i+1;
-	}
-	ag.function_show("generate_n", &_list, _list.size());
+		_list[i] = 100 - i;
+	ag.function_show("inplace_merge", &_list, _list.size());
 
 	return 0;
 }

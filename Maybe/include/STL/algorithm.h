@@ -189,6 +189,10 @@ namespace mi_stl
 				show_generate();
 			else if (!func_name.compare("generate_n"))
 				show_generate_n();
+			else if (!func_name.compare("includes"))
+				show_includes();
+			else if (!func_name.compare("inplace_merge"))
+				show_inplace_merge();
 		
 
 		}
@@ -700,6 +704,63 @@ namespace mi_stl
 				std::cout << ' ' << myarray[i];
 			std::cout << '\n';
 
+		}
+
+		/**
+		 * @function:Returns true if the sorted range [first1,last1) 
+		 *			 contains all the elements in the sorted range [first2,last2).	
+		 * @return:		
+		 * @complexity:	linear 
+		 *
+		 */
+		void show_includes()
+		{
+			describe_func("includes", "indata_container_beg_iterator", "indata_container_end_iterator", "operator", "iterator_of_firstIterator");
+			type_val::iterator first = data_->begin();
+			type_val::iterator end   = data_->end();
+			int continent[] = {40,30,20,10};
+			std::sort (first,end);
+			std::sort (continent,continent+4);
+
+			// using default comparison:
+			if ( std::includes(first,end,continent,continent+4) )
+				std::cout << "container includes continent!\n";
+
+			// using myfunction as comp:
+			if ( std::includes(first,end,continent,continent+4, [](_Ty i, _Ty j){return i<j;}) )
+				std::cout << "container includes continent!\n";
+		}
+
+		/**
+		 * @function:	Merges two consecutive sorted ranges: [first,middle) and [middle,last), 
+		 *				putting the result into the combined sorted range [first,last).
+		 *				
+		 * @return:		
+		 * @complexity:	
+		 *
+		 */
+		void show_inplace_merge()
+		{
+			describe_func("inplace_merge", "indata_container_beg_iterator", "indata_container_end_iterator", "operator", "iterator_of_firstIterator");
+			type_val::iterator first = data_->begin();
+			type_val::iterator end   = data_->end();
+
+			int second[] = {50,40,30,20,10};
+			type_val v(2*size);
+			type_val::iterator it;
+
+			std::sort (first,end);
+			//std::sort (first,second+5);
+
+			it=std::copy (first, end, v.begin());
+			std::copy (first,end,it);
+
+			std::inplace_merge (v.begin(),v.begin()+size,v.end());
+
+			std::cout << "The resulting vector contains:";
+			for (it=v.begin(); it!=v.end(); ++it)
+				std::cout << ' ' << *it;
+			std::cout << '\n';
 		}
 
 	private:
