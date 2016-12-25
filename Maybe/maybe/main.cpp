@@ -245,11 +245,20 @@ int main(int argc, char** argv)
 	/*********************************19**************************************/
 	/*	name: inplace_merge
 	/************************************************************************/
+	//alg<vector<int>, int> ag;
+	//vector<int> _list(100);
+	//for (size_t i=0; i < _list.size(); ++i)
+	//	_list[i] = 100 - i;
+	//ag.function_show("inplace_merge", &_list, _list.size());
+
+	/*********************************20**************************************/
+	/*	name: is_heap
+	/************************************************************************/
 	alg<vector<int>, int> ag;
 	vector<int> _list(100);
 	for (size_t i=0; i < _list.size(); ++i)
-		_list[i] = 100 - i;
-	ag.function_show("inplace_merge", &_list, _list.size());
+		_list[i] = i + 1;
+	ag.function_show("is_heap", &_list, _list.size());
 
 	return 0;
 }

@@ -193,6 +193,8 @@ namespace mi_stl
 				show_includes();
 			else if (!func_name.compare("inplace_merge"))
 				show_inplace_merge();
+			else if (!func_name.compare("is_heap"))
+				show_is_heap();
 		
 
 		}
@@ -761,6 +763,35 @@ namespace mi_stl
 			for (it=v.begin(); it!=v.end(); ++it)
 				std::cout << ' ' << *it;
 			std::cout << '\n';
+		}
+
+		/**
+		 * @function:Returns true if the range [first,last) forms a heap, as if constructed with make_heap.	
+		 * @return:		
+		 * @complexity:	
+		 *
+		 */
+		void show_is_heap()
+		{
+			describe_func("is_heap", "indata_container_beg_iterator", "indata_container_end_iterator", "null", "bool");
+			type_val::iterator first = data_->begin();
+			type_val::iterator end   = data_->end();
+
+			//std::vector<int> foo {9,5,2,6,4,1,3,8,7};
+
+			if (!std::is_heap(first, end))
+				std::make_heap(first,end);
+
+			util::PRINT_ELEMENTS(*data_);
+
+			std::cout << "Popping out elements:";
+			while (!data_->empty()) {
+				std::pop_heap(data_->begin(),data_->end());   // moves largest element to back
+				std::cout << ' ' << data_->back();         // prints back
+				data_->pop_back();                         // pops element out of container
+			}
+			std::cout << '\n';
+
 		}
 
 	private:
