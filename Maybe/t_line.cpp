@@ -36,9 +36,10 @@ void test_stl_sort()
 
 }
 
+
 int main(int argc, char** argv)
 {
-	el::Configurations conf("../conf/mylog.conf");
+	el::Configurations conf("conf/mylog.conf");
 	el::Loggers::reconfigureAllLoggers(conf);
 
 	ofstream out("../conf/a.txt");

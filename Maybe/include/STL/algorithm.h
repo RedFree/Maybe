@@ -9,7 +9,7 @@
 //
 
 #ifdef __cplusplus 
-#include "util.h"
+#include "../util.h"
 
 namespace mi_stl
 {
@@ -791,9 +791,12 @@ namespace mi_stl
 				data_->pop_back();                         // pops element out of container
 			}
 			std::cout << '\n';
-
 		}
 
+		void show_is_heap_util()
+		{
+
+		}
 	private:
 		/*
 		*	Data member

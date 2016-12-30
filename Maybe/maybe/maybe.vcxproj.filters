@@ -28,6 +28,9 @@
     <Filter Include="algorithm\STL">
       <UniqueIdentifier>{5cc129c3-0e04-4f41-b134-28a0970880fa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="algorithm\DS">
+      <UniqueIdentifier>{07bc6e79-4831-465c-bf8c-c6b8c0f16160}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\easylogging++.h">
@@ -60,6 +63,9 @@
     <ClInclude Include="..\include\STL\algorithm.h">
       <Filter>algorithm\STL</Filter>
     </ClInclude>
+    <ClInclude Include="ds.h">
+      <Filter>algorithm\DS</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="noncopy.cpp">
@@ -71,7 +77,7 @@
     <ClCompile Include="..\src\obj\geline.cpp">
       <Filter>entity</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="ds_main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
