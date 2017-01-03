@@ -26,10 +26,28 @@
 using namespace mi_stl;
 int main(int argc, char** argv)
 {
-	int *p = new int;
-	*p = 10;
-	int data = 0;
-	base_ds<int>* object = new base_binary<int>(10);
+	const int length = 100;
+	int *p = new int[length];
+	for (int i = 0; i <= length; ++i)
+	{
+		if (p != nullptr)
+		{
+			p[i] = i;
+			//cout << "p = " << p << endl;
+			
+		}
+		
+	}
+	
+	base_ds<int, int>* object = new base_binary<int, int>(length);
 	object->create();
+	cout << "fill_tree" << endl;
+	object->fill_tree(object->get_root(), p);
+	cout << "pre_order" << endl;
+	object->pre_order(object->get_root());
+
+
+	object->release(object->get_root());
+
 	return 0;
 }

@@ -51,6 +51,7 @@
 #include <numeric>
 #include <functional>
 #include <memory>
+#include <math.h>
 
 using namespace std;
 
