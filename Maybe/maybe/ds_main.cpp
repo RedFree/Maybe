@@ -22,7 +22,7 @@
 // SOFTWARE.
 //*********************************************************************************/
 
-#include "ds.h"
+#include "../include/ds.h"
 using namespace mi_stl;
 int main(int argc, char** argv)
 {

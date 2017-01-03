@@ -25,7 +25,7 @@
 #ifndef _DS_H_
 #define _DS_H_
 
-#include "../include/sys_def.h"
+#include "sys_def.h"
 
 namespace mi_stl
 {
