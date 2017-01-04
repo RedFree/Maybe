@@ -42,9 +42,14 @@ int main(int argc, char** argv)
 	base_ds<int, int>* object = new base_binary<int, int>(length);
 	object->create();
 	cout << "fill_tree" << endl;
-	object->fill_tree(object->get_root(), p);
+	object->fill_tree(object->get_root(), &p);
 	cout << "pre_order" << endl;
 	object->pre_order(object->get_root());
+	cout << "mid_order" << endl;
+	object->mid_order(object->get_root());
+	cout << "level_order" << endl;
+	object->level_order(object->get_root());
+
 
 
 	object->release(object->get_root());

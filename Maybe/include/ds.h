@@ -91,7 +91,7 @@ namespace mi_stl
 			return _deep;
 		}
 
-		virtual void fill_tree(BiNode<_T*>* root, _T*)=0;
+		virtual void fill_tree(BiNode<_T*>* root, _T**)=0;
 
 		/*
 		 *	Previous order traversal
@@ -134,7 +134,7 @@ namespace mi_stl
 		
 		virtual BiNode<_T*>* get_root()const;
 	
-		virtual void fill_tree(BiNode<_T*>* root, _T* node_data);
+		virtual void fill_tree(BiNode<_T*>* root, _T** node_data);
 
 		virtual void pre_order(BiNode<_T*>* root);
 
@@ -196,36 +196,30 @@ namespace mi_stl
 
 	// fill the tree with data
 	template <class _T, class _Td>
-	void base_binary<_T, _Td>::fill_tree(BiNode<_T*>* root, _T* node_data)
+	void base_binary<_T, _Td>::fill_tree(BiNode<_T*>* root, _T** node_data)
 	{
-		if (root != nullptr && node_data != nullptr)
+		//cout << "data = " << (*(node_data)) << endl;
+		if (root != nullptr)
 		{
-			
-			_T* tmp = node_data;
+			_T* tmp = *node_data;
 			if (root->leftNode != nullptr)
 			{
-				cout << "leftNode = " << (*(node_data)) << endl;
-				fill_tree(root->leftNode, ++node_data);
+				fill_tree(root->leftNode, &(++(*node_data)));
 			}
 
 			if (root->rightNode != nullptr)
 			{
-				cout << "rightNode = " << (*(node_data)) << endl;
-				fill_tree(root->rightNode, ++node_data);
+				fill_tree(root->rightNode, &(++(*node_data)));
 			}
 			
-			
-			if (node_data == tmp)
-			{
-				++node_data;
-			}
+			cout << _this_deep++ << " = " << *tmp << endl;
 			root->data = tmp;
 		}
 		else
 		{
 			if (node_data != nullptr)
 			{
-				--node_data;
+				--(*node_data);
 			}
 			
 		}
@@ -234,12 +228,11 @@ namespace mi_stl
 	template <class _T, class _Td>
 	void base_binary<_T, _Td>::pre_order(BiNode<_T*>* root)
 	{
-		//cout << "pre_order" << endl;
 		if (root != nullptr)
 		{
 			if (root->data != nullptr)
 			{
-				cout << "data = " << *(root->data) << endl;
+				cout << ++_this_count << " = " << *(root->data) << endl;
 			}
 			pre_order(root->leftNode);
 			pre_order(root->rightNode);
@@ -249,16 +242,48 @@ namespace mi_stl
 	template <class _T, class _Td>
 	void base_binary<_T, _Td>::mid_order(BiNode<_T*>* root)
 	{
+		if (root != nullptr)
+		{
+			mid_order(root->leftNode);
+			if (root->data != nullptr)
+			{
+				cout << ++_this_count << " = " << *(root->data) << endl;
+			}
+			mid_order(root->rightNode);
+		}
 	}
 
 	template <class _T, class _Td>
 	void base_binary<_T, _Td>::post_order(BiNode<_T*>* root)
 	{
+		if (root != nullptr)
+		{
+			// 
+			post_order(root->leftNode);
+			post_order(root->rightNode);
+			if (root->data != nullptr)
+			{
+				cout << ++_this_count << " = " << *(root->data) << endl;
+			}
+		}
 	}
 
 	template <class _T, class _Td>
 	void base_binary<_T, _Td>::level_order(BiNode<_T*>* root)
 	{
+		if(root == NULL) return;
+		queue<BiNode<_T*>*> q;
+		BiNode<_T*>* node(NULL);
+		 
+		q.push(root);
+		while(!q.empty())
+		{
+		    node = q.front(); q.pop();
+		    cout << ++_this_count << " = " << *node->data << endl;
+		    if(node->leftNode) q.push(node->leftNode);
+		    if(node->rightNode) q.push(node->rightNode);
+		}
+		
 	}
 
 	/*release all the memory*/
@@ -271,9 +296,16 @@ namespace mi_stl
 			release(root->rightNode);
 			if (root->data != nullptr)
 			{
-				delete root->data;	
+				// Because the data is a dynamic array, so it not be used like this here.
+				//delete root->data;	
+				//root->data = nullptr;
 			}
-			delete root;			
+			if (root != nullptr)
+			{
+				delete root;
+				root = nullptr;	
+			}
+					
 		}
 	}
 }
